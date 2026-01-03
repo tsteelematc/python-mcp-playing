@@ -19,7 +19,7 @@ mcp = FastMCP(
 
 def get_current_theme() -> Literal["dark", "light"]:
     """Get the current Windows theme setting.
-    
+
     Returns:
         "dark" if dark mode is enabled, "light" otherwise.
     """
@@ -42,10 +42,10 @@ def get_current_theme() -> Literal["dark", "light"]:
 
 def set_theme(theme: Literal["dark", "light"]) -> None:
     """Set the Windows theme.
-    
+
     Args:
         theme: The theme to set ("dark" or "light").
-        
+
     Raises:
         RuntimeError: If the registry cannot be modified.
     """
@@ -100,7 +100,7 @@ def set_theme(theme: Literal["dark", "light"]) -> None:
 @mcp.tool()
 def get_theme() -> str:
     """Get the current Windows theme setting.
-    
+
     Returns:
         A string indicating the current theme: "dark" or "light".
     """
@@ -111,7 +111,7 @@ def get_theme() -> str:
 @mcp.tool()
 def set_dark_theme() -> str:
     """Set Windows theme to dark mode.
-    
+
     Returns:
         Confirmation message.
     """
@@ -122,7 +122,7 @@ def set_dark_theme() -> str:
 @mcp.tool()
 def set_light_theme() -> str:
     """Set Windows theme to light mode.
-    
+
     Returns:
         Confirmation message.
     """
@@ -133,7 +133,7 @@ def set_light_theme() -> str:
 @mcp.tool()
 def toggle_theme() -> str:
     """Toggle Windows theme between dark and light modes.
-    
+
     Returns:
         Confirmation message with the new theme.
     """
