@@ -1,7 +1,7 @@
 [project]
-name = "windows-theme-toggle-mcp"
-version = "0.1.0"
-description = "MCP server for toggling Windows theme between light and dark modes"
+name = "theme-toggle-mcp"
+version = "0.2.0"
+description = "Cross-platform MCP server for toggling system theme between light and dark modes (Windows and macOS)"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
@@ -20,5 +20,5 @@ build-backend = "hatchling.build"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-pythonpath = ["src"]
+pythonpath = [".", "src"]
 asyncio_mode = "auto"
