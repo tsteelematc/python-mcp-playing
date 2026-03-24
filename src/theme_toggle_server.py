@@ -8,14 +8,16 @@ OS detection is performed at runtime so the same server file works on both platf
 import ctypes
 import subprocess
 import sys
-from typing import Literal
+from typing import Any, Literal
 
 from mcp.server.fastmcp import FastMCP
 
 try:
-    import winreg
+    import winreg as _winreg
 except ImportError:
-    winreg = None  # type: ignore[assignment]
+    _winreg = None
+
+winreg: Any = _winreg
 
 # Initialize the MCP server
 mcp = FastMCP(
@@ -85,6 +87,7 @@ def _windows_get_current_theme() -> Literal["dark", "light"]:
     Returns:
         "dark" if dark mode is enabled, "light" otherwise.
     """
+    assert winreg is not None
     try:
         key = winreg.OpenKey(
             winreg.HKEY_CURRENT_USER,
@@ -111,6 +114,7 @@ def _windows_set_theme(theme: Literal["dark", "light"]) -> None:
     Raises:
         RuntimeError: If the registry cannot be modified.
     """
+    assert winreg is not None
     try:
         key = winreg.OpenKey(
             winreg.HKEY_CURRENT_USER,
@@ -146,7 +150,7 @@ def _windows_set_theme(theme: Literal["dark", "light"]) -> None:
         WM_SETTINGCHANGE: int = 0x1A
         SMTO_ABORTIFHUNG: int = 0x0002
 
-        ctypes.windll.user32.SendMessageTimeoutW(
+        ctypes.windll.user32.SendMessageTimeoutW(  # type: ignore[attr-defined]
             HWND_BROADCAST,
             WM_SETTINGCHANGE,
             0,
